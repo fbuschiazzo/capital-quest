@@ -1,0 +1,10 @@
+{
+  "name": "capital-quest",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Juego de educacion financiera sobre trabajo, inversiones y crecimiento patrimonial.",
+  "scripts": {
+    "start": "npx serve .",
+    "check": "node --check app.js"
+  }
+}

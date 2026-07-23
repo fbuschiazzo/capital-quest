@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#101820" />
+    <title>Capital Quest</title>
+    <link rel="manifest" href="manifest.webmanifest" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="app-shell">
+      <section class="hero">
+        <img class="hero-art" src="assets/capital-quest-hero.png" alt="" aria-hidden="true" />
+        <div class="hero-overlay">
+          <div>
+            <p class="eyebrow">Simulador de independencia financiera</p>
+            <h1>Capital Quest</h1>
+            <p class="hero-copy">
+              Trabaja, invierte, diversifica y desbloquea negocios cada vez mas grandes.
+            </p>
+          </div>
+          <button id="nextMonthButton" class="primary-action" type="button">
+            Avanzar mes
+          </button>
+        </div>
+      </section>
+
+      <section class="dashboard" aria-label="Estado financiero">
+        <article class="stat">
+          <span>Patrimonio</span>
+          <strong id="netWorth">$0</strong>
+        </article>
+        <article class="stat">
+          <span>Efectivo</span>
+          <strong id="cash">$0</strong>
+        </article>
+        <article class="stat">
+          <span>Ingreso mensual</span>
+          <strong id="passiveIncome">$0</strong>
+        </article>
+        <article class="stat">
+          <span>Mes</span>
+          <strong id="month">1</strong>
+        </article>
+      </section>
+
+      <section class="progress-panel">
+        <div>
+          <span id="levelName">Aprendiz</span>
+          <strong id="levelProgressText">$0 para el proximo nivel</strong>
+        </div>
+        <div class="progress-track" aria-hidden="true">
+          <div id="levelProgressBar" class="progress-fill"></div>
+        </div>
+      </section>
+
+      <div class="content-grid">
+        <section class="panel career-panel">
+          <div class="panel-heading">
+            <div>
+              <p class="eyebrow">Carrera activa</p>
+              <h2>Trabajos disponibles</h2>
+            </div>
+            <div class="energy">
+              <span>Energia</span>
+              <strong id="energy">5/5</strong>
+            </div>
+          </div>
+          <div id="jobsList" class="action-list"></div>
+        </section>
+
+        <section class="panel market-panel">
+          <div class="panel-heading">
+            <div>
+              <p class="eyebrow">Marketplace</p>
+              <h2>Oportunidades</h2>
+            </div>
+            <button id="rebalanceButton" class="secondary-action" type="button">Reinvertir 25%</button>
+          </div>
+          <div id="investmentsList" class="market-list"></div>
+        </section>
+
+        <section class="panel portfolio-panel">
+          <div class="panel-heading">
+            <div>
+              <p class="eyebrow">Tus activos</p>
+              <h2>Portfolio</h2>
+            </div>
+            <button id="resetButton" class="ghost-action" type="button">Reiniciar</button>
+          </div>
+          <div id="portfolioList" class="portfolio-list"></div>
+        </section>
+
+        <section class="panel insight-panel">
+          <div class="panel-heading">
+            <div>
+              <p class="eyebrow">Mercado</p>
+              <h2>Lectura del mes</h2>
+            </div>
+            <span id="riskBadge" class="risk-badge">Neutral</span>
+          </div>
+          <canvas id="chartCanvas" class="chart" aria-label="Evolucion del patrimonio"></canvas>
+          <p id="monthlyInsight" class="insight-copy"></p>
+          <div id="eventLog" class="event-log"></div>
+        </section>
+      </div>
+    </main>
+
+    <template id="jobTemplate">
+      <button class="job-card" type="button">
+        <span class="job-icon"></span>
+        <span>
+          <strong class="job-title"></strong>
+          <small class="job-meta"></small>
+        </span>
+        <b class="job-pay"></b>
+      </button>
+    </template>
+
+    <template id="investmentTemplate">
+      <article class="investment-card">
+        <div class="investment-art"></div>
+        <div class="investment-body">
+          <div class="investment-topline">
+            <span class="asset-type"></span>
+            <span class="asset-risk"></span>
+          </div>
+          <h3></h3>
+          <p></p>
+          <div class="asset-metrics">
+            <span class="asset-cost"></span>
+            <span class="asset-return"></span>
+            <span class="asset-volatility"></span>
+          </div>
+          <button class="buy-button" type="button">Invertir</button>
+        </div>
+      </article>
+    </template>
+
+    <script src="app.js"></script>
+  </body>
+</html>

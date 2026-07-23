@@ -1,0 +1,10 @@
+{
+  "name": "Capital Quest",
+  "short_name": "CapitalQuest",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#101820",
+  "theme_color": "#101820",
+  "description": "Juego de educacion financiera sobre trabajo, inversiones y crecimiento patrimonial.",
+  "icons": []
+}
