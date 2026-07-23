@@ -122,9 +122,20 @@ const assets = [
   },
 ];
 
+const avatarPalettes = {
+  skin: ["#f2c7a2", "#d99b6c", "#b8754e", "#8f5637", "#5f382c", "#3d241d"],
+  hair: ["#2c1c16", "#6b3f24", "#c87635", "#f0d36a", "#22252e", "#ffffff"],
+  outfit: ["#246fe5", "#28c76f", "#ff7f43", "#8c6cff", "#ff5ea8", "#25324b"],
+};
+
 const state = loadGame();
 
 const nodes = {
+  avatarPreview: document.querySelector("#avatarPreview"),
+  skinOptions: document.querySelector("#skinOptions"),
+  hairOptions: document.querySelector("#hairOptions"),
+  outfitOptions: document.querySelector("#outfitOptions"),
+  finalizeAvatar: document.querySelector("#finalizeAvatarButton"),
   netWorth: document.querySelector("#netWorth"),
   cash: document.querySelector("#cash"),
   passiveIncome: document.querySelector("#passiveIncome"),
@@ -150,6 +161,7 @@ function initialGame() {
     cash: 1000,
     month: 1,
     energy: 5,
+    avatar: defaultAvatar(),
     holdings: {},
     history: [1000],
     events: ["Arrancas con USD 1.000 y una meta: comprar tu libertad financiera."],
@@ -159,7 +171,9 @@ function initialGame() {
 
 function loadGame() {
   const saved = localStorage.getItem("capitalQuestSave");
-  return saved ? JSON.parse(saved) : initialGame();
+  const game = saved ? JSON.parse(saved) : initialGame();
+  game.avatar = { ...defaultAvatar(), ...(game.avatar ?? {}) };
+  return game;
 }
 
 function saveGame() {
@@ -287,6 +301,89 @@ function resetGame() {
   Object.assign(state, initialGame());
   saveGame();
   render();
+}
+
+function defaultAvatar() {
+  return {
+    skin: "#d99b6c",
+    hair: "#2c1c16",
+    outfitColor: "#246fe5",
+    body: "average",
+    hairStyle: "short",
+    outfit: "suit",
+    accessory: "none",
+  };
+}
+
+function updateAvatar(key, value) {
+  state.avatar[key] = value;
+  renderAvatar();
+  saveGame();
+}
+
+function createSwatches(container, key, values) {
+  container.replaceChildren();
+  values.forEach((value) => {
+    const button = document.createElement("button");
+    button.type = "button";
+    button.dataset.value = value;
+    button.style.background = value;
+    button.setAttribute("aria-label", `${key} ${value}`);
+    button.addEventListener("click", () => updateAvatar(key, value));
+    container.appendChild(button);
+  });
+}
+
+function initAvatarControls() {
+  createSwatches(nodes.skinOptions, "skin", avatarPalettes.skin);
+  createSwatches(nodes.hairOptions, "hair", avatarPalettes.hair);
+  createSwatches(nodes.outfitOptions, "outfitColor", avatarPalettes.outfit);
+  document.querySelectorAll("[data-avatar-control]").forEach((group) => {
+    const key = group.dataset.avatarControl;
+    group.querySelectorAll("button").forEach((button) => {
+      button.addEventListener("click", () => updateAvatar(key, button.dataset.value));
+    });
+  });
+}
+
+function renderAvatar() {
+  const avatar = state.avatar;
+  nodes.avatarPreview.style.setProperty("--skin", avatar.skin);
+  nodes.avatarPreview.style.setProperty("--hair", avatar.hair);
+  nodes.avatarPreview.style.setProperty("--outfit", avatar.outfitColor);
+  nodes.avatarPreview.innerHTML = `
+    <div class="avatar-person body-${avatar.body} outfit-${avatar.outfit} accessory-${avatar.accessory}">
+      <span class="avatar-hair ${avatar.hairStyle}"></span>
+      <span class="avatar-ear left"></span>
+      <span class="avatar-ear right"></span>
+      <span class="avatar-head"></span>
+      <span class="avatar-glasses"></span>
+      <span class="avatar-beard"></span>
+      <span class="avatar-neck"></span>
+      <span class="avatar-arm left"></span>
+      <span class="avatar-arm right"></span>
+      <span class="avatar-torso"></span>
+      <span class="avatar-leg left"></span>
+      <span class="avatar-leg right"></span>
+    </div>
+  `;
+
+  document.querySelectorAll("[data-avatar-control]").forEach((group) => {
+    const key = group.dataset.avatarControl;
+    group.querySelectorAll("button").forEach((button) => {
+      button.classList.toggle("is-selected", button.dataset.value === avatar[key]);
+    });
+  });
+
+  [
+    [nodes.skinOptions, avatar.skin],
+    [nodes.hairOptions, avatar.hair],
+    [nodes.outfitOptions, avatar.outfitColor],
+  ].forEach(([container, selected]) => {
+    container.querySelectorAll("button").forEach((button) => {
+      button.classList.toggle("is-selected", button.dataset.value === selected);
+    });
+  });
 }
 
 function renderJobs() {
@@ -451,6 +548,7 @@ function render() {
   renderPortfolio();
   renderEvents();
   renderChart();
+  renderAvatar();
   saveGame();
 }
 
@@ -465,5 +563,10 @@ function buildInsight(netWorth) {
 nodes.nextMonth.addEventListener("click", nextMonth);
 nodes.rebalance.addEventListener("click", rebalance);
 nodes.reset.addEventListener("click", resetGame);
+nodes.finalizeAvatar.addEventListener("click", () => {
+  pushEvent("Avatar confirmado: tu inversor ya esta listo para construir su imperio.");
+  nodes.finalizeAvatar.textContent = "Avatar guardado";
+});
 window.addEventListener("resize", render);
+initAvatarControls();
 render();

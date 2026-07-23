@@ -30,6 +30,68 @@
         </div>
       </section>
 
+      <section class="avatar-panel" aria-label="Creador de avatar del inversor">
+        <div class="avatar-stage">
+          <div id="avatarPreview" class="avatar-preview" aria-hidden="true"></div>
+          <div>
+            <p class="eyebrow">Tu inversor</p>
+            <h2>Crea tu avatar</h2>
+            <p class="avatar-copy">
+              Ajusta piel, cuerpo, pelo y ropa para que el protagonista se parezca a vos.
+            </p>
+            <button id="finalizeAvatarButton" class="avatar-done" type="button">Listo, soy yo</button>
+          </div>
+        </div>
+
+        <div class="avatar-controls">
+          <div class="control-group">
+            <span>Piel</span>
+            <div id="skinOptions" class="swatch-row"></div>
+          </div>
+          <div class="control-group">
+            <span>Cuerpo</span>
+            <div class="chip-row" data-avatar-control="body">
+              <button type="button" data-value="slim">Flaco</button>
+              <button type="button" data-value="average">Medio</button>
+              <button type="button" data-value="large">Panzon</button>
+            </div>
+          </div>
+          <div class="control-group">
+            <span>Pelo</span>
+            <div class="chip-row" data-avatar-control="hairStyle">
+              <button type="button" data-value="short">Corto</button>
+              <button type="button" data-value="long">Largo</button>
+              <button type="button" data-value="curly">Rulos</button>
+              <button type="button" data-value="bald">Pelado</button>
+            </div>
+          </div>
+          <div class="control-group">
+            <span>Color de pelo</span>
+            <div id="hairOptions" class="swatch-row"></div>
+          </div>
+          <div class="control-group">
+            <span>Ropa</span>
+            <div class="chip-row" data-avatar-control="outfit">
+              <button type="button" data-value="suit">Traje</button>
+              <button type="button" data-value="dress">Vestido</button>
+              <button type="button" data-value="casual">Casual</button>
+            </div>
+          </div>
+          <div class="control-group">
+            <span>Color</span>
+            <div id="outfitOptions" class="swatch-row"></div>
+          </div>
+          <div class="control-group">
+            <span>Extra</span>
+            <div class="chip-row" data-avatar-control="accessory">
+              <button type="button" data-value="none">Simple</button>
+              <button type="button" data-value="glasses">Lentes</button>
+              <button type="button" data-value="beard">Barba</button>
+            </div>
+          </div>
+        </div>
+      </section>
+
       <section class="dashboard" aria-label="Estado financiero">
         <article class="stat">
           <i class="stat-token stat-token-gold" aria-hidden="true"></i>
