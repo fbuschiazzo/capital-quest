@@ -295,6 +295,7 @@ function renderJobs() {
   jobs.forEach((job) => {
     const item = template.content.firstElementChild.cloneNode(true);
     const locked = getNetWorth() < job.unlock;
+    item.dataset.job = job.id;
     item.disabled = locked || state.energy < job.energy;
     item.querySelector(".job-title").textContent = job.title;
     item.querySelector(".job-meta").textContent = locked
@@ -313,6 +314,7 @@ function renderInvestments() {
     const item = template.content.firstElementChild.cloneNode(true);
     const locked = getNetWorth() < asset.unlock;
     const affordable = state.cash >= asset.cost;
+    item.dataset.asset = asset.id;
     item.style.setProperty("--asset-gradient", asset.gradient);
     item.querySelector(".asset-type").textContent = asset.type;
     item.querySelector(".asset-risk").textContent = asset.risk;
@@ -380,8 +382,8 @@ function renderChart() {
   const ctx = canvas.getContext("2d");
   ctx.scale(scale, scale);
   ctx.clearRect(0, 0, rect.width, rect.height);
-  ctx.strokeStyle = "rgba(255,255,255,0.09)";
-  ctx.lineWidth = 1;
+  ctx.strokeStyle = "rgba(71, 143, 185, 0.18)";
+  ctx.lineWidth = 2;
   for (let i = 1; i < 5; i += 1) {
     const y = (rect.height / 5) * i;
     ctx.beginPath();
@@ -400,9 +402,28 @@ function renderChart() {
     if (index === 0) ctx.moveTo(x, y);
     else ctx.lineTo(x, y);
   });
-  ctx.strokeStyle = "#40d894";
-  ctx.lineWidth = 3;
+  const glow = ctx.createLinearGradient(0, 0, rect.width, 0);
+  glow.addColorStop(0, "#28c76f");
+  glow.addColorStop(0.55, "#ffbd35");
+  glow.addColorStop(1, "#2ea8ff");
+  ctx.strokeStyle = glow;
+  ctx.lineWidth = 5;
+  ctx.lineCap = "round";
+  ctx.lineJoin = "round";
   ctx.stroke();
+
+  values.forEach((value, index) => {
+    const x = values.length === 1 ? 0 : (rect.width / (values.length - 1)) * index;
+    const y = rect.height - ((value - min) / (max - min)) * (rect.height - 28) - 14;
+    ctx.beginPath();
+    ctx.fillStyle = "#ffffff";
+    ctx.arc(x, y, 6, 0, Math.PI * 2);
+    ctx.fill();
+    ctx.beginPath();
+    ctx.fillStyle = "#28c76f";
+    ctx.arc(x, y, 3.5, 0, Math.PI * 2);
+    ctx.fill();
+  });
 }
 
 function render() {

@@ -1,19 +1,23 @@
 :root {
-  color-scheme: dark;
+  color-scheme: light;
   font-family:
     Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
     sans-serif;
-  --bg: #101820;
-  --panel: rgba(21, 31, 39, 0.88);
-  --panel-strong: #18242e;
-  --line: rgba(235, 241, 245, 0.12);
-  --text: #eff6f2;
-  --muted: #9fb1af;
-  --green: #40d894;
-  --gold: #f5b94e;
-  --red: #ff6868;
-  --blue: #5eb7ff;
-  --ink: #0b1117;
+  --sky: #65d8ff;
+  --sky-deep: #28a9f3;
+  --grass: #88e269;
+  --panel: #ffffff;
+  --panel-blue: #e9f8ff;
+  --line: rgba(28, 76, 118, 0.14);
+  --text: #203047;
+  --muted: #6b7c92;
+  --green: #28c76f;
+  --gold: #ffbd35;
+  --orange: #ff7f43;
+  --pink: #ff5ea8;
+  --purple: #8c6cff;
+  --blue: #2ea8ff;
+  --shadow: rgba(45, 92, 130, 0.22);
 }
 
 * {
@@ -24,8 +28,9 @@ body {
   margin: 0;
   min-height: 100vh;
   background:
-    radial-gradient(circle at 14% 10%, rgba(64, 216, 148, 0.15), transparent 34rem),
-    linear-gradient(145deg, #0c1217 0%, #13202a 45%, #0f151b 100%);
+    linear-gradient(180deg, rgba(255, 255, 255, 0.58), rgba(255, 255, 255, 0) 210px),
+    radial-gradient(circle at 14% 12%, rgba(255, 255, 255, 0.92), transparent 11rem),
+    linear-gradient(180deg, #7fe3ff 0%, #c6f6ff 38%, #ebf9e8 100%);
   color: var(--text);
 }
 
@@ -38,16 +43,19 @@ button {
 .app-shell {
   width: min(1180px, 100%);
   margin: 0 auto;
-  padding: 18px;
+  padding: 14px;
 }
 
 .hero {
   position: relative;
-  min-height: 330px;
+  min-height: 385px;
   overflow: hidden;
-  border-radius: 8px;
-  background: #0b1117;
-  box-shadow: 0 24px 70px rgba(0, 0, 0, 0.34);
+  border: 8px solid #ffffff;
+  border-radius: 18px;
+  background: #9fe7ff;
+  box-shadow:
+    0 22px 0 rgba(29, 110, 163, 0.12),
+    0 28px 60px var(--shadow);
 }
 
 .hero-art {
@@ -57,25 +65,64 @@ button {
   height: 100%;
   object-fit: cover;
   object-position: center;
+  transform: scale(1.02);
 }
 
 .hero-overlay {
   position: relative;
   z-index: 1;
-  min-height: 330px;
+  min-height: 385px;
   display: flex;
   align-items: flex-end;
   justify-content: space-between;
   gap: 24px;
-  padding: clamp(22px, 4vw, 46px);
-  background: linear-gradient(90deg, rgba(7, 10, 13, 0.82), rgba(7, 10, 13, 0.18));
+  padding: clamp(18px, 4vw, 42px);
+  background:
+    linear-gradient(90deg, rgba(255, 255, 255, 0.96) 0 28%, rgba(255, 255, 255, 0.62) 42%, rgba(255, 255, 255, 0) 72%),
+    linear-gradient(0deg, rgba(37, 117, 169, 0.25), transparent 38%);
+}
+
+.game-logo {
+  position: absolute;
+  top: 18px;
+  left: 18px;
+  display: grid;
+  place-items: center;
+  width: 118px;
+  height: 82px;
+  border: 5px solid #fff;
+  border-radius: 18px;
+  background: linear-gradient(180deg, #ffdc5e, #ff9f2e);
+  color: #613b00;
+  box-shadow: 0 12px 0 #ce7823, 0 18px 24px rgba(112, 75, 10, 0.18);
+  transform: rotate(-3deg);
+}
+
+.game-logo span,
+.game-logo strong {
+  display: block;
+  line-height: 0.95;
+}
+
+.game-logo span {
+  font-size: 0.9rem;
+  font-weight: 900;
+}
+
+.game-logo strong {
+  font-size: 1.35rem;
+  text-transform: uppercase;
 }
 
 .eyebrow {
   margin: 0 0 8px;
-  color: var(--gold);
+  width: fit-content;
+  border-radius: 999px;
+  padding: 7px 12px;
+  background: #fff2bd;
+  color: #98610a;
   font-size: 0.76rem;
-  font-weight: 800;
+  font-weight: 900;
   letter-spacing: 0;
   text-transform: uppercase;
 }
@@ -88,46 +135,55 @@ p {
 }
 
 h1 {
+  max-width: 560px;
   margin-bottom: 10px;
-  font-size: clamp(2.8rem, 8vw, 5.7rem);
-  line-height: 0.94;
+  color: #25324b;
+  font-size: clamp(3.2rem, 8vw, 6.4rem);
+  line-height: 0.92;
   letter-spacing: 0;
+  text-shadow: 0 5px 0 #ffffff, 0 8px 16px rgba(34, 84, 126, 0.18);
 }
 
 .hero-copy {
-  max-width: 560px;
+  max-width: 430px;
   margin-bottom: 0;
-  color: #d4dfdb;
-  font-size: clamp(1rem, 2.2vw, 1.25rem);
+  color: #4d627b;
+  font-size: clamp(1rem, 2.2vw, 1.28rem);
+  font-weight: 800;
 }
 
 .primary-action,
 .secondary-action,
 .ghost-action,
 .buy-button {
-  min-height: 44px;
-  border-radius: 8px;
-  padding: 0 18px;
+  min-height: 52px;
+  border-radius: 16px;
+  padding: 0 20px;
   cursor: pointer;
-  font-weight: 800;
-  transition: transform 160ms ease, opacity 160ms ease, background 160ms ease;
+  font-weight: 950;
+  transition: transform 160ms ease, filter 160ms ease;
 }
 
 .primary-action {
   flex: 0 0 auto;
-  background: var(--green);
-  color: var(--ink);
-  box-shadow: 0 14px 40px rgba(64, 216, 148, 0.25);
+  border: 4px solid #fff;
+  background: linear-gradient(180deg, #60e77f, #20b957);
+  color: #073819;
+  box-shadow: 0 9px 0 #159444, 0 15px 24px rgba(21, 148, 68, 0.26);
 }
 
 .secondary-action {
-  background: rgba(94, 183, 255, 0.14);
-  color: #d8efff;
+  border: 3px solid #fff;
+  background: linear-gradient(180deg, #75caff, #2ea8ff);
+  color: #073255;
+  box-shadow: 0 6px 0 #187ed0;
 }
 
 .ghost-action {
-  background: rgba(255, 255, 255, 0.08);
-  color: var(--muted);
+  border: 3px solid #fff;
+  background: linear-gradient(180deg, #f3f8ff, #d6e9fb);
+  color: #557086;
+  box-shadow: 0 5px 0 #a5bfd6;
 }
 
 .primary-action:hover,
@@ -135,44 +191,101 @@ h1 {
 .ghost-action:hover,
 .buy-button:hover,
 .job-card:hover {
-  transform: translateY(-1px);
+  transform: translateY(-2px);
+  filter: saturate(1.05);
 }
 
 .dashboard {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 10px;
-  margin: 14px 0;
+  gap: 12px;
+  margin: 18px 0;
 }
 
 .stat,
 .progress-panel,
 .panel {
-  border: 1px solid var(--line);
-  border-radius: 8px;
-  background: var(--panel);
-  backdrop-filter: blur(14px);
+  border: 4px solid #fff;
+  border-radius: 18px;
+  background: linear-gradient(180deg, #ffffff, #f2fbff);
+  box-shadow: 0 9px 0 rgba(83, 154, 198, 0.18), 0 18px 32px var(--shadow);
 }
 
 .stat {
-  padding: 18px;
+  position: relative;
+  min-height: 106px;
+  padding: 18px 18px 16px 76px;
+}
+
+.stat-token {
+  position: absolute;
+  left: 16px;
+  top: 22px;
+  width: 46px;
+  height: 46px;
+  border: 4px solid #fff;
+  border-radius: 16px;
+  box-shadow: 0 5px 0 rgba(58, 92, 132, 0.15);
+}
+
+.stat-token::after {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  font-weight: 950;
+}
+
+.stat-token-gold {
+  background: linear-gradient(180deg, #ffe982, #ffb62f);
+}
+
+.stat-token-gold::after {
+  content: "$";
+}
+
+.stat-token-cash {
+  background: linear-gradient(180deg, #83f099, #28c76f);
+}
+
+.stat-token-cash::after {
+  content: "$";
+}
+
+.stat-token-income {
+  background: linear-gradient(180deg, #8ee7ff, #2ea8ff);
+}
+
+.stat-token-income::after {
+  content: "+";
+}
+
+.stat-token-month {
+  background: linear-gradient(180deg, #ffc3df, #ff5ea8);
+}
+
+.stat-token-month::after {
+  content: "M";
 }
 
 .stat span,
 .energy span {
   display: block;
   color: var(--muted);
-  font-size: 0.82rem;
+  font-size: 0.8rem;
+  font-weight: 900;
+  text-transform: uppercase;
 }
 
 .stat strong {
   display: block;
   margin-top: 4px;
+  color: #27364e;
   font-size: clamp(1.25rem, 3vw, 1.9rem);
 }
 
 .progress-panel {
-  padding: 16px 18px;
+  padding: 18px;
 }
 
 .progress-panel > div:first-child,
@@ -186,35 +299,41 @@ h1 {
 }
 
 #levelName {
-  font-weight: 900;
+  color: #25324b;
+  font-weight: 950;
+  font-size: 1.15rem;
 }
 
 #levelProgressText {
   color: var(--muted);
   font-size: 0.9rem;
+  font-weight: 800;
 }
 
 .progress-track {
-  height: 10px;
+  height: 18px;
   margin-top: 12px;
   overflow: hidden;
+  border: 3px solid #d2e8f7;
   border-radius: 999px;
-  background: rgba(255, 255, 255, 0.08);
+  background: #dff4ff;
 }
 
 .progress-fill {
   width: 0%;
   height: 100%;
   border-radius: inherit;
-  background: linear-gradient(90deg, var(--green), var(--gold));
+  background:
+    linear-gradient(90deg, rgba(255, 255, 255, 0.35), transparent),
+    linear-gradient(90deg, #26c96f, #ffbd35);
   transition: width 220ms ease;
 }
 
 .content-grid {
   display: grid;
-  grid-template-columns: minmax(260px, 0.85fr) minmax(320px, 1.25fr);
-  gap: 14px;
-  margin-top: 14px;
+  grid-template-columns: minmax(270px, 0.8fr) minmax(330px, 1.25fr);
+  gap: 16px;
+  margin-top: 16px;
 }
 
 .panel {
@@ -228,16 +347,23 @@ h1 {
 
 .panel h2 {
   margin-bottom: 0;
-  font-size: 1.2rem;
+  color: #25324b;
+  font-size: 1.22rem;
+  font-weight: 950;
 }
 
 .energy {
-  min-width: 84px;
-  text-align: right;
+  min-width: 94px;
+  border: 3px solid #fff;
+  border-radius: 16px;
+  padding: 8px 10px;
+  background: linear-gradient(180deg, #fff0a9, #ffd14e);
+  text-align: center;
+  box-shadow: 0 5px 0 #d8941d;
 }
 
 .energy strong {
-  color: var(--green);
+  color: #6d4700;
 }
 
 .action-list,
@@ -245,39 +371,54 @@ h1 {
 .portfolio-list,
 .event-log {
   display: grid;
-  gap: 10px;
+  gap: 12px;
 }
 
 .job-card {
   width: 100%;
-  min-height: 72px;
+  min-height: 78px;
   display: grid;
-  grid-template-columns: 44px 1fr auto;
+  grid-template-columns: 52px 1fr auto;
   align-items: center;
   gap: 12px;
   padding: 12px;
-  border: 1px solid var(--line);
-  border-radius: 8px;
-  background: rgba(255, 255, 255, 0.055);
+  border: 3px solid #fff;
+  border-radius: 18px;
+  background: linear-gradient(180deg, #ffffff, #e9f8ff);
   text-align: left;
   cursor: pointer;
+  box-shadow: 0 6px 0 #badff3;
 }
 
 .job-card:disabled,
 .buy-button:disabled {
   cursor: not-allowed;
-  opacity: 0.45;
+  opacity: 0.54;
   transform: none;
 }
 
 .job-icon {
-  width: 44px;
-  height: 44px;
-  border-radius: 8px;
+  width: 52px;
+  height: 52px;
+  border: 3px solid #fff;
+  border-radius: 18px;
   background:
-    linear-gradient(135deg, rgba(245, 185, 78, 0.9), rgba(64, 216, 148, 0.8)),
-    #26333d;
-  box-shadow: inset 0 -14px 20px rgba(0, 0, 0, 0.18);
+    radial-gradient(circle at 50% 30%, #fff7 0 18%, transparent 20%),
+    linear-gradient(180deg, #ffda67, #ff8f34);
+  box-shadow: 0 6px 0 rgba(192, 95, 28, 0.3);
+  position: relative;
+}
+
+.job-icon::after {
+  content: "";
+  position: absolute;
+  left: 13px;
+  top: 14px;
+  width: 24px;
+  height: 20px;
+  border-radius: 6px;
+  background: #fff;
+  box-shadow: inset 0 -5px 0 #c9e7fb;
 }
 
 .job-title,
@@ -285,14 +426,21 @@ h1 {
   display: block;
 }
 
+.job-title {
+  color: #25324b;
+  font-weight: 950;
+}
+
 .job-meta {
   display: block;
   margin-top: 4px;
   color: var(--muted);
+  font-weight: 750;
 }
 
 .job-pay {
-  color: var(--green);
+  color: #128c49;
+  font-weight: 950;
 }
 
 .market-list {
@@ -300,30 +448,102 @@ h1 {
 }
 
 .investment-card {
-  min-height: 258px;
+  min-height: 312px;
   overflow: hidden;
-  border: 1px solid var(--line);
-  border-radius: 8px;
-  background: #131f29;
+  border: 4px solid #fff;
+  border-radius: 20px;
+  background: linear-gradient(180deg, #ffffff, #f0fbff);
+  box-shadow: 0 8px 0 rgba(83, 154, 198, 0.18);
 }
 
 .investment-art {
-  height: 92px;
+  height: 126px;
   background:
-    linear-gradient(140deg, rgba(255, 255, 255, 0.16), transparent 34%),
-    var(--asset-gradient, linear-gradient(135deg, #355c7d, #6c5b7b, #c06c84));
+    radial-gradient(circle at 78% 18%, rgba(255, 255, 255, 0.85), transparent 34px),
+    linear-gradient(180deg, #98e9ff, #dff8ff);
   position: relative;
+  overflow: hidden;
+}
+
+.investment-art::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: 14px;
+  width: 118px;
+  height: 70px;
+  border-radius: 18px;
+  background: linear-gradient(135deg, #77dc68, #3dbb5f);
+  transform: translateX(-50%) rotateX(58deg) rotateZ(-45deg);
+  box-shadow: 0 22px 0 rgba(42, 134, 83, 0.16);
 }
 
 .investment-art::after {
   content: "";
   position: absolute;
-  inset: 14px;
-  border-radius: 8px;
-  border: 1px solid rgba(255, 255, 255, 0.18);
+  left: 50%;
+  bottom: 40px;
+  width: 68px;
+  height: 58px;
+  border: 4px solid #fff;
+  border-radius: 10px 10px 6px 6px;
   background:
-    linear-gradient(90deg, transparent 20%, rgba(255, 255, 255, 0.16) 21% 23%, transparent 24%),
-    linear-gradient(0deg, transparent 38%, rgba(255, 255, 255, 0.14) 39% 41%, transparent 42%);
+    linear-gradient(90deg, transparent 45%, rgba(255, 255, 255, 0.55) 46% 54%, transparent 55%),
+    var(--asset-gradient);
+  transform: translateX(-50%);
+  box-shadow: 0 8px 0 rgba(63, 96, 132, 0.18);
+}
+
+.investment-card[data-asset="bonds"] .investment-art::after {
+  border-radius: 999px;
+  width: 72px;
+  height: 72px;
+  background: linear-gradient(180deg, #ffe36d, #ffb228);
+}
+
+.investment-card[data-asset="bonds"] .investment-art::after {
+  content: "$";
+  display: grid;
+  place-items: center;
+  color: #8c5a00;
+  font-size: 2rem;
+  font-weight: 950;
+}
+
+.investment-card[data-asset="stocks"] .investment-art::after {
+  width: 78px;
+  height: 62px;
+  border-radius: 12px;
+  background:
+    linear-gradient(135deg, transparent 48%, rgba(255, 255, 255, 0.85) 49% 54%, transparent 55%),
+    linear-gradient(180deg, #52d7ff, #197fe0);
+}
+
+.investment-card[data-asset="crypto"] .investment-art::after {
+  border-radius: 18px;
+  background: linear-gradient(180deg, #b486ff, #7254ff);
+}
+
+.investment-card[data-asset="apartment"] .investment-art::after {
+  width: 78px;
+  height: 76px;
+  background:
+    repeating-linear-gradient(90deg, transparent 0 17px, rgba(255, 255, 255, 0.5) 18px 22px),
+    linear-gradient(180deg, #54c3ff, #2e72d8);
+}
+
+.investment-card[data-asset="franchise"] .investment-art::after {
+  width: 84px;
+  height: 64px;
+  background:
+    linear-gradient(180deg, #ffef6c 0 28%, #ffffff 29% 42%, #ff7f43 43%);
+}
+
+.investment-card[data-asset="startup"] .investment-art::after {
+  width: 78px;
+  height: 78px;
+  border-radius: 20px 20px 28px 28px;
+  background: linear-gradient(180deg, #38f1c0, #2689ff);
 }
 
 .investment-body {
@@ -336,31 +556,43 @@ h1 {
 .asset-lock {
   color: var(--muted);
   font-size: 0.78rem;
-  font-weight: 700;
+  font-weight: 900;
+}
+
+.asset-risk {
+  border-radius: 999px;
+  padding: 5px 9px;
+  background: #edf7ff;
 }
 
 .asset-risk.high {
-  color: var(--red);
+  color: #c23a5c;
+  background: #ffe4ee;
 }
 
 .asset-risk.medium {
-  color: var(--gold);
+  color: #9b6400;
+  background: #fff1bd;
 }
 
 .asset-risk.low {
-  color: var(--green);
+  color: #117b42;
+  background: #dff8e7;
 }
 
 .investment-card h3 {
   margin: 10px 0 6px;
-  font-size: 1.05rem;
+  color: #25324b;
+  font-size: 1.08rem;
+  font-weight: 950;
 }
 
 .investment-card p {
   min-height: 44px;
   margin-bottom: 12px;
-  color: #c8d4d1;
+  color: #5f7188;
   font-size: 0.9rem;
+  font-weight: 700;
 }
 
 .asset-metrics {
@@ -373,18 +605,25 @@ h1 {
   gap: 2px;
 }
 
+.asset-metrics b {
+  color: #30435f;
+}
+
 .buy-button {
   width: 100%;
-  background: #edf7ef;
-  color: #0a1410;
+  border: 3px solid #fff;
+  background: linear-gradient(180deg, #75e990, #25c564);
+  color: #063818;
+  box-shadow: 0 6px 0 #129241;
 }
 
 .portfolio-row,
 .event-item {
   padding: 12px;
-  border: 1px solid var(--line);
-  border-radius: 8px;
-  background: rgba(255, 255, 255, 0.05);
+  border: 3px solid #fff;
+  border-radius: 16px;
+  background: linear-gradient(180deg, #ffffff, #f4fbff);
+  box-shadow: 0 5px 0 #cce7f6;
 }
 
 .portfolio-row {
@@ -398,27 +637,38 @@ h1 {
   display: block;
 }
 
+.portfolio-row strong {
+  color: #25324b;
+}
+
 .portfolio-row span,
 .event-item,
 .insight-copy {
   color: var(--muted);
   font-size: 0.9rem;
+  font-weight: 750;
 }
 
 .risk-badge {
+  border: 3px solid #fff;
   border-radius: 999px;
-  padding: 6px 10px;
-  background: rgba(245, 185, 78, 0.14);
-  color: var(--gold);
+  padding: 7px 11px;
+  background: linear-gradient(180deg, #ffdd69, #ffb62e);
+  color: #6b4300;
   font-size: 0.8rem;
-  font-weight: 800;
+  font-weight: 950;
+  box-shadow: 0 5px 0 #d8941d;
 }
 
 .chart {
   width: 100%;
   height: 190px;
-  border-radius: 8px;
-  background: rgba(2, 8, 12, 0.34);
+  border: 4px solid #fff;
+  border-radius: 18px;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.65), transparent),
+    linear-gradient(180deg, #dcf6ff, #edfaff);
+  box-shadow: inset 0 -6px 0 rgba(92, 170, 210, 0.12);
 }
 
 .insight-copy {
@@ -431,6 +681,7 @@ h1 {
     align-items: stretch;
     flex-direction: column;
     justify-content: flex-end;
+    padding-top: 108px;
   }
 
   .dashboard,
@@ -445,12 +696,12 @@ h1 {
 
 @media (max-width: 520px) {
   .app-shell {
-    padding: 10px;
+    padding: 8px;
   }
 
   .hero,
   .hero-overlay {
-    min-height: 390px;
+    min-height: 430px;
   }
 
   .dashboard {
@@ -458,7 +709,14 @@ h1 {
   }
 
   .stat {
-    padding: 14px;
+    min-height: 96px;
+    padding: 14px 12px 12px 66px;
+  }
+
+  .stat-token {
+    left: 12px;
+    width: 42px;
+    height: 42px;
   }
 
   .panel-heading {

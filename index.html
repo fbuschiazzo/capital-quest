@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="theme-color" content="#101820" />
+    <meta name="theme-color" content="#65d8ff" />
     <title>Capital Quest</title>
     <link rel="manifest" href="manifest.webmanifest" />
     <link rel="stylesheet" href="styles.css" />
@@ -11,13 +11,17 @@
   <body>
     <main class="app-shell">
       <section class="hero">
-        <img class="hero-art" src="assets/capital-quest-hero.png" alt="" aria-hidden="true" />
+        <img class="hero-art" src="assets/capital-quest-tycoon-hero.png" alt="" aria-hidden="true" />
         <div class="hero-overlay">
+          <div class="game-logo" aria-hidden="true">
+            <span>Capital</span>
+            <strong>Quest</strong>
+          </div>
           <div>
-            <p class="eyebrow">Simulador de independencia financiera</p>
+            <p class="eyebrow">Tycoon financiero</p>
             <h1>Capital Quest</h1>
             <p class="hero-copy">
-              Trabaja, invierte, diversifica y desbloquea negocios cada vez mas grandes.
+              Compra propiedades, escala negocios y mira como crece tu imperio.
             </p>
           </div>
           <button id="nextMonthButton" class="primary-action" type="button">
@@ -28,18 +32,22 @@
 
       <section class="dashboard" aria-label="Estado financiero">
         <article class="stat">
+          <i class="stat-token stat-token-gold" aria-hidden="true"></i>
           <span>Patrimonio</span>
           <strong id="netWorth">$0</strong>
         </article>
         <article class="stat">
+          <i class="stat-token stat-token-cash" aria-hidden="true"></i>
           <span>Efectivo</span>
           <strong id="cash">$0</strong>
         </article>
         <article class="stat">
+          <i class="stat-token stat-token-income" aria-hidden="true"></i>
           <span>Ingreso mensual</span>
           <strong id="passiveIncome">$0</strong>
         </article>
         <article class="stat">
+          <i class="stat-token stat-token-month" aria-hidden="true"></i>
           <span>Mes</span>
           <strong id="month">1</strong>
         </article>
